@@ -36,7 +36,6 @@ dequeue: function() {
 },
 
 size: function() {
-  console.log('hellothere');
 	return this.getSize;
 
 }
