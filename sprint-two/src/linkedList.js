@@ -56,7 +56,6 @@ var LinkedList = function(){
         else {return false}
       } 
       else {
-        console.log();
         recursive(node.next)} 
     }
   };
