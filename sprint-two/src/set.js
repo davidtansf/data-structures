@@ -1,18 +1,46 @@
 var Set = function(){
+  
   var set = Object.create(setPrototype);
-  set._storage = undefined;
+  set.storage = [];
   return set;
+
 };
 
-var setPrototype = {};
+var setPrototype = {
 
-setPrototype.add = function(item){
-};
+	add: function(item) {
+      var found = 0;
+      for (var i = 0; i < this.storage.length; i++) {
+      	if (item === this.storage[i]) {
+      		found = 1;
+      		break;
+      	}
+      }	
+      if (!found) {
+      	this.storage.push(item);
+      }
+      if (this.storage.length === 0) {
+      	this.storage.push(item);
+      }
+	},
+    
+	contains: function(item) {
+      for (var i = 0; i < this.storage.length; i++) {
+      	if (item === this.storage[i]) {
+      	   return true;
+      	}  
+	  }
+	  return false;
+	},  
 
-setPrototype.contains = function(item){
-};
+	remove: function(item) {
+      for (var i = 0; i < this.storage.length; i++) {
+      	if (item === this.storage[i]) {
+      	   delete this.storage[i];
+      	}  
+	  }
+	}
 
-setPrototype.remove = function(item){
 };
 
 /*
