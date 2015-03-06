@@ -14,7 +14,7 @@ stackMethods.push = function(value) {
 	this.getsize++;
 }
 
-stackMethods.pop = function(value) {
+stackMethods.pop = function() {
 	
 	if (this.getsize > 0) {
 		this.getsize--;

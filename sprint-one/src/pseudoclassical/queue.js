@@ -29,4 +29,5 @@ Queue.prototype.size = function() {
 	return this.getSize;
 }
 
-
+var Starbucks = Queue();
+var Subway = Queue();
