@@ -3,21 +3,45 @@ var HashTable = function(){
   this._storage = LimitedArray(this._limit);
 };
 
-HashTable.prototype.insert = function(k, v){
+HashTable.prototype.insert = function(k, v) {
   var i = getIndexBelowMaxForKey(k, this._limit);
+  var value = [k,v];
+  var temp = this._storage.get(i);
+
+  if (!temp) { // if nothing in array element, add
+    var combinedArray = [];
+    combinedArray.push(value);
+    this._storage.set(i, combinedArray);
+  } else { // something already exists, combine to create duplo
+    temp.push(value);
+    this._storage.set(i, temp);
+  }
 };
 
-HashTable.prototype.retrieve = function(k){
+HashTable.prototype.retrieve = function(k) {
   var i = getIndexBelowMaxForKey(k, this._limit);
+  var temp = this._storage.get(i);
 
+  if (!temp) {
+    return null;
+  }  
+  // temp = _.flatten(temp);
+  for (var x = 0; x < temp.length; x++) {
+    if (temp[x][0] === k) {
+      return temp[x][1];
+    }
+  }
 };
 
-HashTable.prototype.remove = function(k){
+HashTable.prototype.remove = function(k) {
+  var i = getIndexBelowMaxForKey(k, this._limit);
+  var temp = this._storage.get(i);
 
+  for (var x = 0; x < temp.length; x++) {
+    if (temp[x][0] === k) {
+      temp[x][1] = null;
+      break;
+    }
+  }
+  this._storage.set(i, temp);
 };
-
-
-
-/*
- * Complexity: What is the time complexity of the above functions?
- */
