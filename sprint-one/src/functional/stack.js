@@ -1,3 +1,4 @@
+
 var Stack = function(){
   var someInstance = {};
 
@@ -31,3 +32,4 @@ var Stack = function(){
 
   return someInstance;
 };
+

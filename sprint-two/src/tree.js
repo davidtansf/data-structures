@@ -10,20 +10,19 @@ var Tree = function(value) {
 
 };
 
-
-
-
 var treeMethods = {
 
   addChild: function(value){
-    this.children[this.children.length] = new Treenode(value);
+    this.children[this.children.length] = new Tree(value);
 
   },
 
   contains: function(target) {
-    result = false;
+    window.result = false; // intentional declaration of global variable
     this.recursive(target);
-    return result;
+    var temp = result;
+    delete window.result;
+    return temp;
   }, 
 
   recursive: function(target) {
@@ -34,12 +33,4 @@ var treeMethods = {
       this.children[i].recursive(target);
     }  
   }
-};
-
-var Treenode = function(value){
-  var node = {};
-  node.value = value;
-  node.children = [];
-  _.extend(node,treeMethods);
-  return node;
 };

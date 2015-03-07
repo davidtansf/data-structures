@@ -49,14 +49,12 @@ var LinkedList = function(){
     }
 
     function recursive (node) {
-      console.log('hello');
       if (node.value === target) {return true} 
       else if (node.value === list.tail.value) {
         if (node.value === target) {return true} 
         else {return false}
       } 
       else {
-        console.log();
         recursive(node.next)} 
     }
   };
