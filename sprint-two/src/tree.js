@@ -8,32 +8,33 @@ var Tree = function(value){
 };
 
 
-
-
 var treeMethods = {
 
 	addChild: function(value){
 		var array = this.children;
-		var node = new treeNode;
+		var node = new Tree(value);
     node.value = value;
-
 		array[array.length] = node;
 
 	},
 
+	recursive: function(target) {
+		console.log(result);
+		for(var i = 0; i < this.children.length; i++) {
+			if (this.children[i].value === target) {result = true;}
+			this.children[i].recursive(target);
+
+		}
+	},
+
+
 	contains: function(target){
+		result = false;
+		this.recursive(target);
+		return result;
 	}
 
 };
-
-var treeNode = function(value){
-  var node = {};
-
-  node.value = value;
-
-  return node;
-};
-
 
 /*
  * Complexity: What is the time complexity of the above functions?
