@@ -14,7 +14,7 @@ HashTable.prototype.insert = function(k, v) {
     this._storage.set(i, combinedArray);
   } else { // something already exists, combine to create duplo
     temp.push(value);
-    this._storage.set(i, temp);
+    //this._storage.set(i, temp);
   }
 };
 
@@ -31,17 +31,27 @@ HashTable.prototype.retrieve = function(k) {
       return temp[x][1];
     }
   }
+  return null;
 };
 
 HashTable.prototype.remove = function(k) {
   var i = getIndexBelowMaxForKey(k, this._limit);
   var temp = this._storage.get(i);
+  
+  if (!temp) {
+    return null;
+  }
 
   for (var x = 0; x < temp.length; x++) {
     if (temp[x][0] === k) {
-      temp[x][1] = null;
-      break;
+      var returned = temp[x][1];
+      temp.splice(x,1);
+      return returned;
     }
   }
-  this._storage.set(i, temp);
+
+  return null;
+
+ // this._storage.set(i, temp); redundant, passed by reference
+
 };
