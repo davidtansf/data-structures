@@ -16,6 +16,7 @@ Graph.prototype.contains = function(node){
 };
 
 Graph.prototype.removeNode = function(node){
+
   delete this.nodes[node];
 };
 
@@ -34,6 +35,7 @@ Graph.prototype.addEdge = function(fromNode, toNode){
 Graph.prototype.removeEdge = function(fromNode, toNode){
   delete this.nodes[fromNode][toNode];
   delete this.nodes[toNode][fromNode];
+
 };
 
 Graph.prototype.forEachNode = function(cb){
@@ -41,7 +43,3 @@ Graph.prototype.forEachNode = function(cb){
     cb(prop);
   }
 };
-
-/*
- * Complexity: What is the time complexity of the above functions?
- */
