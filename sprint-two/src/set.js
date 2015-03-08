@@ -1,40 +1,60 @@
-var Set = function(){
+// var Set = function(){
   
-  var set = Object.create(setPrototype);
-  set.storage = [];
-  return set;
+//   var set = Object.create(setPrototype);
+//   set.storage = []; // solution set, create object instead
+//   return set;
 
+// };
+
+// var setPrototype = {
+
+// 	add: function(item) {
+//     var found = 0;
+//     for (var i = 0; i < this.storage.length; i++) {
+//     	if (item === this.storage[i]) {
+//     		found = 1;
+//     		break;
+//     	}
+//     }	
+//     if (!found || this.storage.length === 0) {
+//     	this.storage.push(item);
+//     }
+// 	},
+    
+// 	contains: function(item) {
+//     for (var i = 0; i < this.storage.length; i++) {
+//       if (item === this.storage[i]) {
+//       	 return true;
+//       }  
+// 	  }
+// 	  return false;
+// 	},  
+
+// 	remove: function(item) {
+//     for (var i = 0; i < this.storage.length; i++) {
+//       if (item === this.storage[i]) {
+//       	 delete this.storage[i];
+//       }  
+// 	  }
+// 	}
+// };
+
+var Set = function () {
+  var set = Object.create(setPrototype);
+  set.storage = {};
+  return set;
 };
 
-var setPrototype = {
+var setPrototype = {};
 
-	add: function(item) {
-    var found = 0;
-    for (var i = 0; i < this.storage.length; i++) {
-    	if (item === this.storage[i]) {
-    		found = 1;
-    		break;
-    	}
-    }	
-    if (!found || this.storage.length === 0) {
-    	this.storage.push(item);
-    }
-	},
-    
-	contains: function(item) {
-    for (var i = 0; i < this.storage.length; i++) {
-      if (item === this.storage[i]) {
-      	 return true;
-      }  
-	  }
-	  return false;
-	},  
+setPrototype.add = function(value) {
+  return this.storage[value] = value;
+};
 
-	remove: function(item) {
-    for (var i = 0; i < this.storage.length; i++) {
-      if (item === this.storage[i]) {
-      	 delete this.storage[i];
-      }  
-	  }
-	}
+setPrototype.contains = function(value) {
+  return !!this.storage[value];
+};
+
+setPrototype.remove = function(value) {
+  delete this.storage[value];
 };

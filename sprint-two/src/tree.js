@@ -10,12 +10,42 @@ var Tree = function(value) {
 
 };
 
+// var treeMethods = {
+
+//    addChild: function(value){
+//     this.children[this.children.length] = Tree (value); //why don't you have to add new?
+
+//   },
+
+//   contains: function (target) {
+    
+//     var result = false;
+
+//     var searchNode = function (node) {
+//       if (node.value === target) {
+//         result = true;
+//         return;
+//       }
+//       for (var i = 0; < node.children.length; i++) {
+//         searchNode(node.children[i]);
+//       }
+    
+//     searchNode(this);
+
+//     return result;
+
+//   }
+
+// };  
+
+
 var treeMethods = {
 
-  addChild: function(value){
-    this.children[this.children.length] = new Tree(value);
+   addChild: function(value){
+    this.children[this.children.length] = new Tree (value); //why don't you have to add new?
 
   },
+
 
   contains: function(target) {
     window.result = false; // intentional declaration of global variable
@@ -33,5 +63,5 @@ var treeMethods = {
       this.children[i].recursive(target);
     }  
   }
-};
 
+};

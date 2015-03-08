@@ -27,6 +27,12 @@ describe('binarySearchTree', function() {
     expect(binarySearchTree.right.left.value).to.equal(6);
   });
 
+   it('should not create new Nodes for duplicates', function(){
+    binarySearchTree.insert(5);
+    expect(binarySearchTree.left).to.equal(null);
+    expect(binarySearchTree.right).to.equal(null);
+  });
+
   it('should have a working "contains" method', function(){
     binarySearchTree.insert(2);
     binarySearchTree.insert(3);

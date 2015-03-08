@@ -15,29 +15,26 @@ var binaryMethods = {};
 
 binaryMethods.insert = function(value) {
   var node = new BinarySearchTree(value);
-  console.log('hello');
+  
+  letsCompare(node,this); // starts resursive process
 
   function letsCompare(newly, current) {
-    console.log('newval: ',newly.value);
-    console.log('currentval: ',current.value);
     if (newly.value < current.value) {
-      console.log('goes here');
       return goLeft(newly, current);
-    } else {
-      console.log('doesnt go');
+    } else if (newly.value > current.value) {
       return goRight(newly,current);
-    } 
+    }
+    else {
+      return "Already Exists";
+    }
   }  
 
   function goLeft(newly, current) {
-    console.log('goes here2');
     if (!current.left) {
-      console.log('final');
       current.left = newly;
-      console.log(newly);
     } else {
       current = current.left;
-      return letsCompare(newly,current);
+      return letsCompare(newly,current); // recursive
     }
   }
 
@@ -46,11 +43,9 @@ binaryMethods.insert = function(value) {
       current.right = newly;
     } else {
       current = current.right;
-      return letsCompare(newly,current);
+      return letsCompare(newly,current); // recursive
     }
   }
-  
-  letsCompare(node,this);
 
 };
   
