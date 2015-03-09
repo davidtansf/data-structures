@@ -11,37 +11,29 @@ var Queue = function(){
 
 var queueMethods = {
 
+  enqueue: function (value) {
+    var temp = this.getSize;
+    for (var i in this.storage) {
+      this.storage[temp] = this.storage[temp-1];
+      temp --;
+    }
+    
+    this.storage[temp] = value;
+    this.getSize++;
+  },
 
-enqueue: function (value) {
-  var temp = this.getSize;
-  
+  dequeue: function() {
+  	if (this.getSize > 0) {
+  		this.getSize -- ;
+  		var item = this.storage[this.getSize];
+  		delete this.storage[this.getSize];
+  		return item;
+  	}	
+  },
 
-  for (var i in this.storage) {
-    this.storage[temp] = this.storage[temp-1];
-    temp --;
+  size: function() {
+  	return this.getSize;
   }
   
-  this.storage[temp] = value;
-  
-  this.getSize++;
-},
-
-dequeue: function() {
-	if (this.getSize > 0) {
-		this.getSize -- ;
-		var item = this.storage[this.getSize];
-		delete this.storage[this.getSize];
-		return item;
-	}	
-},
-
-size: function() {
-	return this.getSize;
-
-}
-
-
 };
-
-
 

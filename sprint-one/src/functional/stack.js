@@ -32,4 +32,3 @@ var Stack = function(){
 
   return someInstance;
 };
-

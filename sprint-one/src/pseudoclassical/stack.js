@@ -1,4 +1,4 @@
-var Stack = function() {
+var Stack = function () {
 	this.getSize = 0;
 	this.storage = {};
 };

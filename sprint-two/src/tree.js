@@ -10,42 +10,12 @@ var Tree = function(value) {
 
 };
 
-// var treeMethods = {
-
-//    addChild: function(value){
-//     this.children[this.children.length] = Tree (value); //why don't you have to add new?
-
-//   },
-
-//   contains: function (target) {
-    
-//     var result = false;
-
-//     var searchNode = function (node) {
-//       if (node.value === target) {
-//         result = true;
-//         return;
-//       }
-//       for (var i = 0; < node.children.length; i++) {
-//         searchNode(node.children[i]);
-//       }
-    
-//     searchNode(this);
-
-//     return result;
-
-//   }
-
-// };  
-
-
 var treeMethods = {
 
    addChild: function(value){
     this.children[this.children.length] = new Tree (value); //why don't you have to add new?
 
   },
-
 
   contains: function(target) {
     window.result = false; // intentional declaration of global variable
@@ -58,10 +28,36 @@ var treeMethods = {
   recursive: function(target) {
     for (var i = 0; i < this.children.length; i++) {
       if (this.children[i].value === target) {
-        result = true;
+        return result = true;
       }
       this.children[i].recursive(target);
     }  
   }
 
 };
+
+/*
+ var treeMethods = {
+
+   addChild: function(value){
+    this.children[this.children.length] = Tree (value); //why don't you have to add new?
+
+  },
+
+  contains: function (target) {
+    var result = false;
+    var searchNode = function (node) {
+      if (node.value === target) {
+        result = true;
+        return;
+      }
+      for (var i = 0; i < node.children.length; i++) {
+        searchNode(node.children[i]);
+      }
+    }  
+    searchNode(this);
+    return result;
+  }
+
+};
+*/

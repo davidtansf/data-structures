@@ -36,3 +36,31 @@ var Queue = function(){
 
   return someInstance;
 };
+
+// var Queue = function() {
+
+//   var someInstance = {};
+
+//   var storage = {};
+//   var size = 0;
+//   var next = 0;
+
+//   someInstance.enqueue = function (value) {
+//     storage[size] = value;
+//     size++;
+//   };
+//   someInstance.dequeue = function () {
+//     if (next !== size) {
+//       var item = storage[next];
+//       delete storage[next];
+//       next++;
+//       return item;
+//     }
+//   };
+//   someInstance.size = function () {
+//     return size - next;
+//   }
+
+//   return someInstance;
+
+// };
