@@ -39,7 +39,7 @@ Graph.prototype.removeEdge = function(fromNode, toNode){
 };
 
 Graph.prototype.forEachNode = function(cb){
-  for (var prop in this.nodes) {
-    cb(prop);
+  for (var node in this.nodes) {
+    cb(node);
   }
 };
