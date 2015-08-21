@@ -15,7 +15,7 @@ var treeMethods = {
     this.children.push(node);
   },
 
-  contains: function(target) { // true recursive solution
+  contains: function(target) { // true recursive solution with loop
 
     if (this.value === target) {
       return true;
@@ -31,6 +31,28 @@ var treeMethods = {
 
     return false;
   },
+
+/*
+  contains: function(target) { // true recursive solution, with _.each
+
+    var result = false;
+
+    if (this.value === target) {
+      result = true;
+    }
+
+    var nodes = this.children;
+
+    _.each(nodes, function(node) {
+      if (node.contains(target)) {
+        return result = true;
+      }
+    });
+
+    return result;
+  }
+
+*/
 
 /*
   contains: function(target) {  // sub recursive solution
