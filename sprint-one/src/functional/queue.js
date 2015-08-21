@@ -1,41 +1,73 @@
-var Queue = function(){
+var Queue = function(){ //
   var someInstance = {};
 
   // Use an object with numeric keys to store values
   var storage = {};
-  var size = 0;
-  
+  var start = 0;
+  var end = 0;
+
   // Implement the methods below
 
   someInstance.enqueue = function(value){
-    var temp = size;
-    for (var prop in storage) {
-      storage[temp] = storage[temp-1];
-      temp --;
-      
-    }
-    size++;
-    storage[0] = value;
-    
+    storage[end] = value;
+    end++;
   };
-  someInstance.dequeue = function(){
-    if (size > 0) {
-    size --;
 
-    var item = storage[size];  
-    
-    delete storage[size]; 
-    
-    return item;
-    }               
+  someInstance.dequeue = function(){
+    if (start < end) {
+      var temp = storage[start];
+      delete storage[start];
+      start++;
+      return temp;
+    }
   };
 
   someInstance.size = function(){
-    return size;
+    return end - start;
   };
 
   return someInstance;
 };
+
+
+// var Queue = function(){
+//   var someInstance = {};
+
+//   // Use an object with numeric keys to store values
+//   var storage = {};
+//   var size = 0;
+
+//   // Implement the methods below
+
+//   someInstance.enqueue = function(value){
+//     var temp = size;
+//     for (var prop in storage) {
+//       storage[temp] = storage[temp-1];
+//       temp --;
+
+//     }
+//     size++;
+//     storage[0] = value;
+
+//   };
+//   someInstance.dequeue = function(){
+//     if (size > 0) {
+//     size --;
+
+//     var item = storage[size];
+
+//     delete storage[size];
+
+//     return item;
+//     }
+//   };
+
+//   someInstance.size = function(){
+//     return size;
+//   };
+
+//   return someInstance;
+// };
 
 // var Queue = function() {
 

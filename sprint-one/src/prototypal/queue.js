@@ -11,7 +11,7 @@ var Queue = function() {
 var queueMethods = {
 
 	enqueue: function (value) {
-	  
+
 	  var temp = this.getsize;
 
 	  for (var i in this.storage) {
@@ -32,7 +32,7 @@ var queueMethods = {
 	   var item = this.storage[this.getsize];
 	   delete this.storage[this.getsize];
 	   return item;
-	  }  
+	  }
 	},
 
 	size: function () {
@@ -40,6 +40,6 @@ var queueMethods = {
 
 }
 
-
-
 };
+
+var test = Queue();

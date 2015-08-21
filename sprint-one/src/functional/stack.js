@@ -24,3 +24,35 @@ var Stack = function(){
   return someInstance;
 
 };
+
+/*
+var Stack = function(){
+  var someInstance = {};
+
+  // Use an object with numeric keys to store values
+  someInstance.storage = {};
+  someInstance._size = 0;
+
+  // Implement the methods below
+  someInstance.push = function(value){
+    someInstance.storage[someInstance._size] = value;
+    someInstance._size++;
+  };
+
+  someInstance.pop = function(){
+    if(someInstance._size) {
+      someInstance._size--;
+      var temp = someInstance.storage[someInstance._size];
+      delete someInstance.storage[someInstance._size];
+      return temp;
+    }
+  };
+
+  someInstance.size = function(){
+    return someInstance._size;
+  };
+
+  return someInstance;
+};
+
+*/

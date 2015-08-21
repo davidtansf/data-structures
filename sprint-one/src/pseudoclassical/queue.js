@@ -4,7 +4,7 @@ var Queue = function() {
 };
 
 Queue.prototype.enqueue = function(value) {
-  
+
   var temp = this.getSize;
 
   for (var i in this.storage) {
@@ -29,5 +29,4 @@ Queue.prototype.size = function() {
 	return this.getSize;
 }
 
-var Starbucks = Queue();
-var Subway = Queue();
+var Starbucks = new Queue();
