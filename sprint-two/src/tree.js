@@ -1,63 +1,75 @@
-var Tree = function(value) {
+var Tree = function(value){
   var newTree = {};
-
-// http://stackoverflow.com/questions/6163532/why-cant-i-set-properties-of-an-array-element-a-string-in-javascript
   newTree.value = value;
-  newTree.children = [];
- 
-  _.extend(newTree,treeMethods);
-  return newTree;
 
+  _.extend(newTree, treeMethods);
+  newTree.children = [];
+
+  return newTree;
 };
 
 var treeMethods = {
 
-   addChild: function(value){
-    this.children[this.children.length] = new Tree (value); //why don't you have to add new?
-
+  addChild: function(value) {
+    var node = Tree(value);
+    this.children.push(node);
   },
 
-  contains: function(target) {
-    window.result = false; // intentional declaration of global variable
-    this.recursive(target);
-    var temp = result;
-    delete window.result;
-    return temp;
-  }, 
+  contains: function(target) { // true recursive solution
 
-  recursive: function(target) {
-    for (var i = 0; i < this.children.length; i++) {
-      if (this.children[i].value === target) {
-        return result = true;
+    if (this.value === target) {
+      return true;
+    }
+
+    var nodes = this.children;
+
+    for (var i = 0; i < nodes.length; i++) {
+      if (nodes[i].contains(target)) {
+        return true;
       }
-      this.children[i].recursive(target);
-    }  
-  }
+    }
 
-};
+    return false;
+  },
 
 /*
- var treeMethods = {
-
-   addChild: function(value){
-    this.children[this.children.length] = Tree (value); //why don't you have to add new?
-
-  },
-
-  contains: function (target) {
+  contains: function(target) {  // sub recursive solution
     var result = false;
-    var searchNode = function (node) {
+
+    var recursive = function(node) {
       if (node.value === target) {
-        result = true;
-        return;
+        return result = true;
       }
+
       for (var i = 0; i < node.children.length; i++) {
-        searchNode(node.children[i]);
+        recursive(node.children[i]);
       }
-    }  
-    searchNode(this);
+    };
+
+    recursive(this);
+
     return result;
   }
-
-};
 */
+
+/*
+  contains: function(target) { // iterative solution using queue
+
+  var index = 0;
+  var queue = [this];
+
+  while(index < queue.length) {
+    if (queue[index].value === target) {
+      return true;
+    }
+    queue[index].children.forEach(function(node){
+      queue.push(node);
+    });
+    index++;
+  }
+
+  return false;
+
+  }
+*/
+};
