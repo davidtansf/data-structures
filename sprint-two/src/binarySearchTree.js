@@ -1,97 +1,60 @@
 var BinarySearchTree = function(value){
-  
-  var newBinary = {};
-
-  newBinary.left = null;
-  newBinary.right = null;
-  newBinary.value = value;
-
-  _.extend(newBinary,binaryMethods);
-  return newBinary;
-
+  this.value = value;
+  this.left = null;
+  this.right = null;
 };
 
-var binaryMethods = {}; 
-
-binaryMethods.insert = function(value) {
+BinarySearchTree.prototype.insert = function(value) {
 
   var node = new BinarySearchTree(value);
-  letsCompare(node,this); // starts resursive process
 
-  function letsCompare(newly, current) {
-    if (newly.value < current.value) {
-      return goLeft(newly, current);
-    } else if (newly.value > current.value) {
-      return goRight(newly,current);
-    }
-    else {
-      return "Already Exists";
-    }
-  }  
-
-  function goLeft(newly, current) {
-    if (!current.left) {
-      current.left = newly;
-    } else {
-      current = current.left;
-      return letsCompare(newly,current); // recursive
-    }
+  if (value < this.value && this.left === null) {
+    this.left = node;
+    return;
   }
-
-  function goRight(newly, current) {
-    if (!current.right) {
-      current.right = newly;
-    } else {
-      current = current.right;
-      return letsCompare(newly,current); // recursive
-    }
+  if (value > this.value && this.right === null) {
+    this.right = node;
+    return;
+  }
+  if (value < this.value) {
+    this.left.insert(value);
+  }
+  if (value > this.value) {
+    this.right.insert(value);
   }
 
 };
-  
-binaryMethods.contains = function(value) {
-  
-  var result = false;
-  letsCompare(value, this);
-  
-  function letsCompare(value, current) {
-    if (current.value === value) {
-      return result = true;
-    } else if (value < current.value) {
-      return goLeft(value,current);
-    } else if (value > current.value) {
-      return goRight(value,current);
-    }
-  }
 
-  function goLeft(value,current) {
-    if (!current.left) {
-      return;
-    } else {
-      current = current.left;
-      return letsCompare(value,current);
-    }
-  }
+BinarySearchTree.prototype.contains = function(value) {
 
-  function goRight(value, current) {
-    if(!current.right) {
-      return;
-    } else {
-      current = current.right;
-      return letsCompare(value,current);
-    }
+  if (this.value === value) {
+    return true;
   }
-
-  return result;
+  if (value < this.value && this.left === null) {
+    return false;
+  }
+  if (value > this.value && this.right === null) {
+    return false;
+  }
+  if (value < this.value) {
+    return this.left.contains(value);
+  }
+  if (value > this.value) {
+    return this.right.contains(value);
+  }
 
 };
 
-binaryMethods.depthFirstLog = function(callBack) {
-  callBack(this.value);
-  if ( this.left ){
-    this.left.depthFirstLog(callBack);
+BinarySearchTree.prototype.depthFirstLog = function(callback) {
+
+  callback(this.value);
+
+  if (this.left) {
+    this.left.depthFirstLog(callback);
   }
-  if ( this.right ){
-    this.right.depthFirstLog(callBack);
+  if (this.right) {
+    this.right.depthFirstLog(callback);
   }
+
 };
+
