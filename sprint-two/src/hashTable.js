@@ -3,55 +3,47 @@ var HashTable = function(){
   this._storage = LimitedArray(this._limit);
 };
 
-HashTable.prototype.insert = function(k, v) {
-  var i = getIndexBelowMaxForKey(k, this._limit);
-  var value = [k,v];
-  var temp = this._storage.get(i);
+HashTable.prototype.insert = function(k, v){
+  var index = getIndexBelowMaxForKey(k, this._limit);
+  var storage = this._storage.get(index) || [];
 
-  if (!temp) { // if nothing in array element, add
-    var combinedArray = [];
-    combinedArray.push(value);
-    this._storage.set(i, combinedArray);
-  } else { // something already exists, combine to create duplo
-    temp.push(value);
-    //this._storage.set(i, temp);
+  for (var i = 0; i < storage.length; i++) {
+    if (storage[i][0] === [k]) {
+      storage[i][1] = v;
+      return;
+    }
   }
+
+  storage.push([k,v]);
+  this._storage.set(index,storage);
+
 };
 
-HashTable.prototype.retrieve = function(k) {
-  var i = getIndexBelowMaxForKey(k, this._limit);
-  var temp = this._storage.get(i);
+HashTable.prototype.retrieve = function(k){
+  var index = getIndexBelowMaxForKey(k, this._limit);
+  var storage = this._storage.get(index) || [];
 
-  if (!temp) {
-    return null;
-  }  
-  // temp = _.flatten(temp);
-  for (var x = 0; x < temp.length; x++) {
-    if (temp[x][0] === k) {
-      return temp[x][1];
+  for (var i = 0; i < storage.length; i++) {
+    if (storage[i][0] === k) {
+      return storage[i][1];
     }
   }
   return null;
 };
 
-HashTable.prototype.remove = function(k) {
-  var i = getIndexBelowMaxForKey(k, this._limit);
-  var temp = this._storage.get(i);
-  
-  if (!temp) {
+HashTable.prototype.remove = function(key){
+  var index = getIndexBelowMaxForKey(key, this._limit);
+  var storage = this._storage.get(index);
+
+  if (!storage) {
     return null;
   }
 
-  for (var x = 0; x < temp.length; x++) {
-    if (temp[x][0] === k) {
-      var returned = temp[x][1];
-      temp.splice(x,1);
-      return returned;
+  for (var i = 0; i < storage.length; i++) {
+    if (storage[i][0] === key) {
+      return storage.splice(i,1);
     }
   }
-
   return null;
-
- // this._storage.set(i, temp); redundant, passed by reference
-
 };
+
