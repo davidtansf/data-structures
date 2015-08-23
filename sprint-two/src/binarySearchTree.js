@@ -30,19 +30,13 @@ BinarySearchTree.prototype.contains = function(value) {
   if (this.value === value) {
     return true;
   }
-  if (value < this.value && this.left === null) {
-    return false;
-  }
-  if (value > this.value && this.right === null) {
-    return false;
-  }
-  if (value < this.value) {
+  if (value < this.value && this.left !== null) {
     return this.left.contains(value);
   }
-  if (value > this.value) {
+  if (value > this.value && this.right !== null) {
     return this.right.contains(value);
   }
-
+  return false;
 };
 
 BinarySearchTree.prototype.depthFirstLog = function(callback) {
